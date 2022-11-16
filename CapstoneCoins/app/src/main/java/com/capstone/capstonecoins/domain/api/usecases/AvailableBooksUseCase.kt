@@ -11,15 +11,14 @@ import javax.inject.Inject
 class AvailableBooksUseCase
 @Inject constructor(private var repository: CoinsRepositoryImpl) {
     lateinit var response: List<Book>
-
     suspend fun book(): Flow<List<Book>> = flow {
         try {
-            if (repository.getAvailableBooks().isNotEmpty()) {
-                response = repository.getLocalBooks()
-            } else {
-                response = repository.getAvailableBooks()
-                repository.insertLocalBooks(response)
+
+            response = repository.getAvailableBooks().filter {
+                it.id.endsWith("mxn")
             }
+            //  repository.insertLocalBooks(response)
+
             emit(response)
         } catch (e: HttpException) {
             Log.d("Mensaje", "Show Error: $e")
