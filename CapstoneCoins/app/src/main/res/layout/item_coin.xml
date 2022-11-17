@@ -10,13 +10,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_info_container"
             android:layout_width="match_parent"
-            android:background="@color/card"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/card">
 
             <ImageView
                 android:id="@+id/iv_book"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +28,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="@string/example_text"
-                android:textSize="16sp"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_book"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,6 +38,7 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_arrow_100"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

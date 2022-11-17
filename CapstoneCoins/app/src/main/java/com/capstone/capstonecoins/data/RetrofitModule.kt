@@ -56,18 +56,18 @@ object RetrofitModule {
         return retrofit.create(ApiService::class.java)
     }
 
-    private val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-        this.level = HttpLoggingInterceptor.Level.BASIC
-    }
+    /* private val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
+         this.level = HttpLoggingInterceptor.Level.BASIC
+     }
 
-    private val client =
-        OkHttpClient.Builder().addInterceptor(interceptor).addNetworkInterceptor { chain ->
-            chain.proceed(
-                chain.request()
-                    .newBuilder()
-                    .header("User-Agent", "User-Agent")
-                    .build()
-            )
-        }
+     private val client =
+         OkHttpClient.Builder().addInterceptor(interceptor).addNetworkInterceptor { chain ->
+             chain.proceed(
+                 chain.request()
+                     .newBuilder()
+                     .header("User-Agent", "User-Agent")
+                     .build()
+             )
+         }*/
 
 }
