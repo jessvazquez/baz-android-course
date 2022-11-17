@@ -14,12 +14,8 @@ class DetailCoinUseCase @Inject constructor(private var repository: DetailCoinRe
 
     suspend fun detailCoin(typeCoin: String): Flow<BookDetail> = flow {
         try {
-            if (repository.getLocalDetailCoin(typeCoin).id > 0) {
-                response = repository.getLocalDetailCoin(typeCoin)
-            } else {
-                response = repository.getDetailCoin(typeCoin)
-            }
-            repository.insertLocalDetailBook(response)
+            response = repository.getDetailCoin(typeCoin)
+            // repository.insertLocalDetailBook(response)
             emit(response)
         } catch (e: HttpException) {
             Log.d("Mensaje", "Show Error: $e")
