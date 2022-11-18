@@ -54,6 +54,8 @@ ktlint {
 
 dependencies {
     def room_version = "2.3.0" // check latest version from docs
+    def rxjava_version ="3.1.5"
+    def rxandroid_version ="3.0.0"
 
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
@@ -78,8 +80,13 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.44")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
 
-    implementation 'io.reactivex.rxjava3:rxjava:2.5.0'
+/*    implementation 'io.reactivex.rxjava3:rxjava:2.5.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'*/
+
+    implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxandroid_version"
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
