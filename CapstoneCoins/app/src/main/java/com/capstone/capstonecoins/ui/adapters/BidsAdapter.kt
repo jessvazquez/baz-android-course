@@ -21,13 +21,11 @@ class BidsAdapter(var itemClick: (Bid) -> Unit) :
 
     }
 
-    //Todo Imagenes de CriptoMonedas
     inner class ViewHolder(private val binding: ItemBidBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(bids: Bid) = with(binding) {
             tvAmount.text = "Amount: " + bids.amount
-            //tvBook.text = bids.book
             tvPrice.text = "Price: " + bids.price
         }
     }

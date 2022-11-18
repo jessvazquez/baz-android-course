@@ -21,7 +21,6 @@ class AsksAdapter(itemClick: (Ask) -> Unit) :
 
     }
 
-    //Todo Imagenes de CriptoMonedas
     inner class ViewHolder(private val binding: ItemAskBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(ask: Ask) = with(binding) {

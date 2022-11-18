@@ -3,10 +3,22 @@ package com.capstone.capstonecoins.domain.api
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.capstone.capstonecoins.data.models.availablebooks.Payload
+import androidx.room.Query
+import com.capstone.capstonecoins.data.repository.models.Book
+import com.capstone.capstonecoins.data.repository.models.BookDetail
 
 @Dao
 interface BooksDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllBooks(book: List<Book>)
+
+    @Query("SELECT * FROM Book")
+    fun getAvailableLocalBooks(): List<Book>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAllBooks(payload: List<Payload>)
+    fun insertLocalDetailBooks(typeCoin: BookDetail)
+
+    @Query("SELECT * FROM BookDetail WHERE book = :book")
+    fun getLocalDetailBooks(book: String): BookDetail
+
 }

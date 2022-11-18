@@ -7,11 +7,15 @@ import com.capstone.capstonecoins.data.repository.models.BookDetail
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
+import javax.inject.Inject
 
-class DetailCoinUseCase(private var repository: DetailCoinRepositoryImpl) {
+class DetailCoinUseCase @Inject constructor(private var repository: DetailCoinRepositoryImpl) {
+    lateinit var response: BookDetail
+
     suspend fun detailCoin(typeCoin: String): Flow<BookDetail> = flow {
         try {
-            val response = repository.getDetailCoin(typeCoin)
+            response = repository.getDetailCoin(typeCoin)
+            // repository.insertLocalDetailBook(response)
             emit(response)
         } catch (e: HttpException) {
             Log.d("Mensaje", "Show Error: $e")
