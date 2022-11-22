@@ -1,6 +1,7 @@
 package com.capstone.capstonecoins.data
 
 import com.capstone.capstonecoins.data.utils.URL_BASE
+import com.capstone.capstonecoins.data.utils.USER_AGENT
 import com.capstone.capstonecoins.domain.api.ApiService
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -11,6 +12,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
@@ -35,7 +37,7 @@ object RetrofitModule {
                 chain.proceed(
                     chain.request()
                         .newBuilder()
-                        .header("User-Agent", "User-Agent").build()
+                        .header(USER_AGENT, USER_AGENT).build()
                 )
             }.build()
     }
@@ -46,6 +48,7 @@ object RetrofitModule {
         return Retrofit.Builder()
             .baseUrl(URL_BASE)
             .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(okHttpClient)
             .build()
     }
@@ -56,18 +59,5 @@ object RetrofitModule {
         return retrofit.create(ApiService::class.java)
     }
 
-    private val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-        this.level = HttpLoggingInterceptor.Level.BASIC
-    }
-
-    private val client =
-        OkHttpClient.Builder().addInterceptor(interceptor).addNetworkInterceptor { chain ->
-            chain.proceed(
-                chain.request()
-                    .newBuilder()
-                    .header("User-Agent", "User-Agent")
-                    .build()
-            )
-        }
 
 }

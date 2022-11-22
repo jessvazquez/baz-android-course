@@ -17,12 +17,16 @@ class CoinViewmodel @Inject constructor(private var useCase: AvailableBooksUseCa
 
     fun getAvailableBooks() {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = useCase.book()
+            val response = useCase.inlineBook()
             response.collect { books ->
                 cryptoBook.postValue(books)
             }
+            /* val cryptoRxObserver = Observable.create<List<Book>> { emitter ->
+                 emitter.onNext(response)
+             }*/
         }
     }
+
 
 }
 
